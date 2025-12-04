@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العروض - رحلات بحرية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="offers.html">العروض</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+        </div>
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'color:white;font-size:24px;font-weight:bold;\'>شعار الشركة</div>'">
+        </div>
+    </nav>
+
+    <!-- Offers Page -->
+    <div class="offers-container">
+        <h1 class="offers-title">العروض المتاحة</h1>
+        <div class="yachts-grid">
+            <div class="yacht-card">
+                <div class="yacht-image">صورة يخت الفخامة</div>
+                <div class="yacht-info">
+                    <h3 class="yacht-name">يخت الفخامة</h3>
+                    <p class="yacht-price">السعر: 500 ريال/ساعة</p>
+                    <p class="yacht-discount">تخفيض 20% فوق 3 ساعات</p>
+                    <button class="btn-details" onclick="showYachtDetails('الفخامة')">عرض التفاصيل</button>
+                </div>
+            </div>
+            <div class="yacht-card">
+                <div class="yacht-image">صورة يخت الأناقة</div>
+                <div class="yacht-info">
+                    <h3 class="yacht-name">يخت الأناقة</h3>
+                    <p class="yacht-price">السعر: 650 ريال/ساعة</p>
+                    <p class="yacht-discount">تخفيض 20% فوق 3 ساعات</p>
+                    <button class="btn-details" onclick="showYachtDetails('الأناقة')">عرض التفاصيل</button>
+                </div>
+            </div>
+            <div class="yacht-card">
+                <div class="yacht-image">صورة يخت الملكي</div>
+                <div class="yacht-info">
+                    <h3 class="yacht-name">يخت الملكي</h3>
+                    <p class="yacht-price">السعر: 800 ريال/ساعة</p>
+                    <p class="yacht-discount">تخفيض 20% فوق 3 ساعات</p>
+                    <button class="btn-details" onclick="showYachtDetails('الملكي')">عرض التفاصيل</button>
+                </div>
+            </div>
+            <div class="yacht-card">
+                <div class="yacht-image">صورة يخت الأحلام</div>
+                <div class="yacht-info">
+                    <h3 class="yacht-name">يخت الأحلام</h3>
+                    <p class="yacht-price">السعر: 950 ريال/ساعة</p>
+                    <p class="yacht-discount">تخفيض 20% فوق 3 ساعات</p>
+                    <button class="btn-details" onclick="showYachtDetails('الأحلام')">عرض التفاصيل</button>
+                </div>
+            </div>
+        </div>
+        <div class="reviews-section">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">تجربة ممتعة</p>
+            <p class="review-text">رحلات متميزة</p>
+        </div>
+    </div>
+
+    <!-- Yacht Details Modal -->
+    <div id="detailsModal" class="details-modal">
+        <div class="details-content">
+            <span class="close-modal" onclick="closeDetailsModal()">&times;</span>
+            <h2 id="yachtTitle"></h2>
+            <div class="gallery">
+                <div class="gallery-item">صورة داخلية 1</div>
+                <div class="gallery-item">صورة داخلية 2</div>
+                <div class="gallery-item">صورة داخلية 3</div>
+                <div class="gallery-item">صورة داخلية 4</div>
+                <div class="gallery-item">صورة داخلية 5</div>
+                <div class="gallery-item">صورة داخلية 6</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showYachtDetails(yachtName) {
+            document.getElementById('yachtTitle').textContent = 'يخت ' + yachtName;
+            document.getElementById('detailsModal').style.display = 'block';
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('details-modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

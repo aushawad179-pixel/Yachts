@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - رحلات بحرية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="offers.html">العروض</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+        </div>
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'color:white;font-size:24px;font-weight:bold;\'>شعار الشركة</div>'">
+        </div>
+    </nav>
+
+    <!-- Contact Page -->
+    <div class="contact-container">
+        <div class="contact-form">
+            <h2>تواصل معنا</h2>
+            
+            <div class="company-info">
+                <div class="info-item">
+                    <strong>رقم التواصل:</strong>
+                    <span>+966 50 123 4567</span>
+                </div>
+                <div class="info-item">
+                    <strong>رقم الاستفسار:</strong>
+                    <span>+966 50 765 4321</span>
+                </div>
+                <div class="info-item">
+                    <strong>البريد الإلكتروني:</strong>
+                    <span>info@yachttrips.com</span>
+                </div>
+                <div class="info-item">
+                    <strong>البلد:</strong>
+                    <span>المملكة العربية السعودية</span>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; color: #f5576c; margin: 30px 0 20px;">أرسل استفسارك</h3>
+            <div id="contactSuccess" class="success-message">تم إرسال الاستفسار بنجاح!</div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>الرسالة</label>
+                    <textarea required placeholder="اكتب استفسارك هنا..."></textarea>
+                </div>
+                <button type="submit" class="btn-contact">إرسال الاستفسار</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('contactSuccess').style.display = 'none';
+                this.reset();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
