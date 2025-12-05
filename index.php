@@ -54,6 +54,11 @@
             <div id="registerSuccess" class="success-message">تم إنشاء الحساب بنجاح!</div>
             <div id="registerError" class="error-message"></div>
             <form id="registerForm">
+                <!-- ✅ إضافة حقل الاسم -->
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" name="register_name" required>
+                </div>
                 <div class="form-group">
                     <label>البريد الإلكتروني</label>
                     <input type="email" name="register_email" required>
@@ -87,10 +92,13 @@
     <section id="home">
         <div class="home-container">
             <video class="video-background" autoplay loop muted playsinline>
-                <source src="videos/background.mp4" type="video/mp4">
+                <source src="videos/back.mp4" type="video/mp4">
             </video>
+
             <div class="overlay"></div>
+
             <div class="content">
+
                 <h1>ألق بمراسي التفكير واستمتع بسحر الابحار معنا</h1>
                 <h2>استمتع برحلات فاخرة وتجربة بحرية لا تنسى</h2>
                 <button class="btn-book" onclick="openBookingModel()">احجز الآن</button>
@@ -420,7 +428,127 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+        // ========== تسجيل دخول ==========
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('login.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('loginSuccess').style.display = 'block';
+                        document.getElementById('loginError').style.display = 'none';
+                        setTimeout(() => {
+                            closeLoginModal();
+                            location.reload(); // تحديث الصفحة
+                        }, 1500);
+                    } else {
+                        document.getElementById('loginError').textContent = data.message;
+                        document.getElementById('loginError').style.display = 'block';
+                        document.getElementById('loginSuccess').style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('loginError').textContent = 'حدث خطأ في الاتصال';
+                    document.getElementById('loginError').style.display = 'block';
+                });
+        });
+
+        // ========== إنشاء حساب ==========
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('register.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('registerSuccess').style.display = 'block';
+                        document.getElementById('registerError').style.display = 'none';
+                        setTimeout(() => {
+                            closeRegisterModal();
+                            openLoginModal(); // فتح نافذة تسجيل الدخول
+                        }, 1500);
+                    } else {
+                        document.getElementById('registerError').textContent = data.message;
+                        document.getElementById('registerError').style.display = 'block';
+                        document.getElementById('registerSuccess').style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('registerError').textContent = 'حدث خطأ في الاتصال';
+                    document.getElementById('registerError').style.display = 'block';
+                });
+        });
+
+        // ========== الحجز ==========
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('booking.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('successMsg').textContent = data.message;
+                        document.getElementById('successMsg').style.display = 'block';
+                        document.getElementById('errorMsg').style.display = 'none';
+                        this.reset(); // تفريغ الفورم
+                        setTimeout(() => {
+                            closeBookingModal();
+                        }, 2000);
+                    } else {
+                        document.getElementById('errorMsg').textContent = data.message;
+                        document.getElementById('errorMsg').style.display = 'block';
+                        document.getElementById('successMsg').style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('errorMsg').textContent = 'حدث خطأ في الاتصال';
+                    document.getElementById('errorMsg').style.display = 'block';
+                });
+        });
+
+        // ========== فتح/إغلاق النوافذ ==========
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function openRegisterModal() {
+            closeLoginModal();
+            document.getElementById('registerModal').style.display = 'flex';
+        }
+
+        function closeRegisterModal() {
+            document.getElementById('registerModal').style.display = 'none';
+        }
+
+        function openBookingModel() {
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+    </script>
 
 
 

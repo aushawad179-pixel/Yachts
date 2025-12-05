@@ -72,16 +72,30 @@ nav {
     overflow: hidden;
 }
 
+/* الحاوية الأساسية */
+.home-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* ارتفاع الشاشة كاملة */
+    overflow: hidden;
+}
+
+/* الفيديو */
 .video-background {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* يعرض الفيديو كامل بدون قص */
+    background: black;   /* لو في فراغات يطلع أسود */
     z-index: -1;
 }
 
+/* اللون الشفاف فوق الفيديو */
 .overlay {
     position: absolute;
     top: 0;
@@ -91,6 +105,7 @@ nav {
     z-index: 0;
 }
 
+/* محتوى الصفحة */
 .content {
     position: relative;
     z-index: 1;
@@ -98,10 +113,12 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     color: white;
-    text-align: center;
+    text-align: center; دا كل الكود العندي البختص بالصفحة والخلفيو  
 }
+
+
 
 .content h1 {
     font-size: 72px;

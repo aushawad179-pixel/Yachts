@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, phone, password, gender, birthday, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())");
+        // ✅ تم تصليح: birthday → birthdate
+        $stmt = $pdo->prepare("INSERT INTO users (name, email, phone, password, gender, birthdate) VALUES (?, ?, ?, ?, ?, ?)");
 
         if ($stmt->execute([$name, $email, $phone, $hashedPassword, $gender, $birthdate])) {
             echo json_encode(['success' => true, 'message' => 'تم إنشاء الحساب بنجاح']);
